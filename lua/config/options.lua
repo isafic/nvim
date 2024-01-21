@@ -3,4 +3,3 @@
 -- Add any additional options here
 local opt = vim.opt
 opt.relativenumber = true
-opt.winbar = "%=%m %f"
