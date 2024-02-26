@@ -13,53 +13,53 @@ return {
       vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
     end,
     event = "VeryLazy",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/popup.nvim",
-    },
-    config = function()
-      local present, wk = pcall(require, "which-key")
-      if not present then
-        return
-      end
-
-      wk.register({
-        c = {
-          c = {
-            name = "Copilot Chat",
-          },
-        },
-      }, {
-        mode = "n",
-        prefix = "<leader>",
-        silent = true,
-        noremap = true,
-        nowait = false,
-      })
-    end,
+    -- dependencies = {
+    --   "nvim-telescope/telescope.nvim",
+    --   "nvim-lua/popup.nvim",
+    -- },
+    -- config = function()
+    --   local present, wk = pcall(require, "which-key")
+    --   if not present then
+    --     return
+    --   end
+    --
+    --   wk.register({
+    --     c = {
+    --       c = {
+    --         name = "Copilot Chat",
+    --       },
+    --     },
+    --   }, {
+    --     mode = "n",
+    --     prefix = "<leader>",
+    --     silent = true,
+    --     noremap = true,
+    --     nowait = false,
+    --   })
+    -- end,
     keys = {
       -- { "<leader>ccb", "<cmd>CopilotChatBuffer<cr>", desc = "CopilotChat - Chat with current buffer" },
-      {
-        "<leader>cch",
-        function()
-          require("CopilotChat.code_actions").show_help_actions()
-        end,
-        desc = "CopilotChat - Help actions",
-      },
-      -- Show prompts actions with telescope
-      {
-        "<leader>ccp",
-        function()
-          require("CopilotChat.code_actions").show_prompt_actions()
-        end,
-        desc = "CopilotChat - Help actions",
-      },
-      {
-        "<leader>ccp",
-        ":lua require('CopilotChat.code_actions').show_prompt_actions(true)<CR>",
-        mode = "x",
-        desc = "CopilotChat - Prompt actions",
-      },
+      -- {
+      --   "<leader>cch",
+      --   function()
+      --     require("CopilotChat.code_actions").show_help_actions()
+      --   end,
+      --   desc = "CopilotChat - Help actions",
+      -- },
+      -- -- Show prompts actions with telescope
+      -- {
+      --   "<leader>ccp",
+      --   function()
+      --     require("CopilotChat.code_actions").show_prompt_actions()
+      --   end,
+      --   desc = "CopilotChat - Help actions",
+      -- },
+      -- {
+      --   "<leader>ccp",
+      --   ":lua require('CopilotChat.code_actions').show_prompt_actions(true)<CR>",
+      --   mode = "x",
+      --   desc = "CopilotChat - Prompt actions",
+      -- },
       {
         "<leader>ccb",
         function()
@@ -85,7 +85,7 @@ return {
       },
       {
         "<leader>ccx",
-        ":CopilotChatInPlace<cr>",
+        "<cmd>CopilotChatInPlace<cr>",
         mode = "x",
         desc = "CopilotChat - Run in-place code",
       },

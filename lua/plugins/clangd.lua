@@ -5,7 +5,9 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        pyright = {},
+        pyright = {
+          enabled = false,
+        },
         pylsp = {
           settings = {
 
