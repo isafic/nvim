@@ -3,3 +3,4 @@
 -- Add any additional options here
 local opt = vim.opt
 opt.relativenumber = true
+vim.g.python3_host_prog = "/usr/bin/python3"
