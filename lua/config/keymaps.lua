@@ -30,3 +30,59 @@ km.set("n", "<leader>tw", function()
   local current_value = vim.wo.wrap
   vim.wo.wrap = not current_value
 end, { noremap = true, silent = true, desc = "Toggle wraparound" })
+
+-- Toggle Colemak mappings
+
+local customMappingsActive = false
+
+local function map(mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+local function applyCustomMappings()
+  -- Colemak mappings
+  map("", "m", "h", {})
+  map("", "n", "j", {})
+  map("", "e", "k", {})
+  map("", "i", "l", {})
+  map("", "h", "m", {})
+  map("", "j", "n", {})
+  map("", "k", "e", {})
+  map("", "l", "i", {})
+
+  -- Extended mappings
+  map("", "M", "0", {})
+  map("", "I", "$", {})
+end
+
+local function clearCustomMappings()
+  -- Clear custom mappings by setting them to do nothing
+  -- This is a basic approach; adjust based on your needs
+  map("", "m", "<nop>", {})
+  map("", "n", "<nop>", {})
+  map("", "e", "<nop>", {})
+  map("", "i", "<nop>", {})
+  map("", "h", "<nop>", {})
+  map("", "j", "<nop>", {})
+  map("", "k", "<nop>", {})
+  map("", "l", "<nop>", {})
+
+  map("", "M", "<nop>", {})
+  map("", "I", "<nop>", {})
+end
+
+_G.toggleCustomMappings = function()
+  if customMappingsActive then
+    clearCustomMappings()
+  else
+    applyCustomMappings()
+  end
+  customMappingsActive = not customMappingsActive
+end
+
+-- Setup a keybinding to toggle the mappings
+map("n", "<leader>tk", "<cmd>lua toggleCustomMappings()<CR>", { desc = "Toggle Colemak Mappings" })
